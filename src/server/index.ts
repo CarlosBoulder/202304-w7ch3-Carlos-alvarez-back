@@ -8,6 +8,6 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.use("/login", userRouter);
+app.use("/", userRouter);
 
 export default app;
