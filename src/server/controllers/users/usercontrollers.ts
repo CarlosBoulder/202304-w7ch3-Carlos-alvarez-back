@@ -5,7 +5,7 @@ import User from "../../../database/models/User.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import { type UserCredentialsRequest } from "../../../types.js";
 
-const loginUser = async (
+export const loginUser = async (
   req: UserCredentialsRequest,
   res: Response,
   next: NextFunction
@@ -40,4 +40,16 @@ const loginUser = async (
   }
 };
 
-export default loginUser;
+export const getUsers = async (
+  req: UserCredentialsRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const users = await User.find().exec();
+
+    res.status(200).json({ users });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
