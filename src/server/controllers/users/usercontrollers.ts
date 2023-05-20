@@ -5,7 +5,7 @@ import User from "../../../database/models/User.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import { type UserCredentialsRequest } from "../../../types.js";
 
- get user coexport const loginUser = async (
+export const loginUser = async (
   req: UserCredentialsRequest,
   res: Response,
   next: NextFunction
