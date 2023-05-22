@@ -5,15 +5,19 @@ import userRouter from "./routers/users/userRouter.js";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ["http://localhost:5173"],
-  })
-);
+app.disable("x-powered-by");
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS!.split(" ");
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
 
 app.use(morgan("dev"));
 
 app.use(express.json());
+
+app.use(cors(options));
 
 app.use("/", userRouter);
 
